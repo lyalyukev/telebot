@@ -26,8 +26,15 @@ var rootCmd = &cobra.Command{
 			return
 		}
 
-		kbot.Handle("/hello", func(c telebot.Context) error {
-			return c.Send("Hello!")
+		kbot.Handle(telebot.OnText, func(c telebot.Context) error {
+			fmt.Println(c.Message().Payload, c.Text())
+			text := c.Text()
+
+			if text == "/hello" {
+				return c.Send("Received command Hello")
+			}
+
+			return c.Send(text)
 		})
 
 		kbot.Start()
@@ -36,6 +43,7 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() {
+	log.Println("Starting the bot...")
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
 		os.Exit(1)
