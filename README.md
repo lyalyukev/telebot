@@ -2,7 +2,7 @@
 
 Add our bot in Telegram:
 
-> https://t.me/OrderforArtistbot
+> https://t.me/OrdersForArtistbot
 
 Command:
 > /hello
